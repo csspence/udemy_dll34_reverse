@@ -32,6 +32,31 @@ class DoublyLinkedList {
         return this;
     }
     reverse(){
-        
+      let current = this.head;
+      let counter = 0;
+      let temp;
+      while(counter < this.length) {
+        if(current === this.tail) {
+          this.node.next = this.node.prev;
+          this.node.prev = null;
+          counter++;
+          break;
+        }
+        if(current === this.head) {
+          this.head.prev = this.head.next;
+          this.head.next = null;
+          counter++;
+          continue;
+        }
+        temp = this.node.next;
+        this.node.next = this.node.prev;
+        this.node.prev = temp;
+        current = this.node.prev;
+        counter++;
+      }
+      temp = this.tail;
+      this.tail = this.head;
+      this.head = temp;
+      return this;
     }
 }
